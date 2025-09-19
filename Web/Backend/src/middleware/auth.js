@@ -15,8 +15,8 @@ const authenticate = async (req, res, next) => {
             return next(new AppError('Access token is required', 401));
         }
 
-        const token = jwtManager.extractToken(authHeader);
-        const decoded = jwtManager.verifyAccessToken(token);
+        // const token = jwtManager.extractToken(authHeader);
+        const decoded = jwtManager.verifyAccessToken(authHeader);
 
         // Check if user still exists
         const user = await User.findById(decoded.id).select('+isActive');
